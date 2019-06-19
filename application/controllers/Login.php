@@ -25,7 +25,7 @@ class Login extends CI_Controller{
             'logged_in' => TRUE
         );
         $this->session->set_userdata($sesdata);
-        // access login for admin
+        // access login for mahasiswa
         if($tipe === '1'){
             redirect('page');
 
@@ -33,9 +33,9 @@ class Login extends CI_Controller{
         }elseif($tipe === '2'){
             redirect('page/staff');
 
-        // access login for author
+        // access login for others
         }else{
-            redirect('page/author');
+            redirect('page');
         }
     }else{
         echo $this->session->set_flashdata('msg','Username or Password is Wrong');

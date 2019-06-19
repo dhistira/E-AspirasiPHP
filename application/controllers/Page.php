@@ -17,22 +17,4 @@ class Page extends CI_Controller{
 
   }
 
-  function staff(){
-    //Allowing akses to staff only
-    if($this->session->userdata('tipe')==='2'){
-      $this->load->view('dashboard_view');
-    }else{
-        echo "Access Denied";
-    }
-  }
-
-  function author(){
-    //Allowing akses to author only
-    if($this->session->userdata('tipe')==='3'){
-      $this->load->view('dashboard_view');
-    }else{
-        echo "Access Denied";
-    }
-  }
-
 }

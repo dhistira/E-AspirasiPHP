@@ -3,32 +3,32 @@
 // initialize map
 var map = new GMaps({
   div: '#map',
-  lat: -6.8665409,
-  lng: 106.4836553,
-  zoom: 8
+  lat: -7.5576139,
+  lng: 110.8557427,
+  zoom: 16
 });
 // Added markers to the map
 map.addMarker({
-  lat: -6.5637928,
-  lng: 106.7535061,
-  title: 'Multinity',
+  lat: -7.561463983006043,
+  lng: 110.85771680583503,
+  title: 'Laporan',
   infoWindow: {
-    content: '<h6>Multinity</h6><p>Jl. HM. Syarifudin, Bubulak, Bogor Bar., <br>Kota Bogor, Jawa Barat 16115</p><p><a target="_blank" href="https://multinity.com">Website</a></p>'
+    content: '<h6>Danau bocor</h6>Monmaap pak danau nya bocor<hr>Laporan Dari <b>Hakikid</b><br><small>3 Menit yang Lalu</small>'
   }
 });
 map.addMarker({
-  lat: -6.1325841,
-  lng: 106.8116507,
-  title: 'Procyon Logikreasi Indonesia',
+  lat: -7.558145681464203,
+  lng: 110.85428357829596,
+  title: 'Laporan',
   infoWindow: {
-    content: '<h6>Procyon Logikreasi Indonesia</h6><p>Jl. Kali Besar Tim. No.29C, RT.7/RW.7, Pinangsia, Tamansari, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11110</p><p><a target="_blank" href="https://procyon.co.id/">Website</a></p>'
+    content: '<h6>Halte Ilang</h6>Ebuset halte nya dimaling<hr>Laporan Dari <b>Mia Anandita</b><br><small>2 Minggu yang Lalu</small>'
   }
 });
 map.addMarker({
-  lat: -6.4462693,
-  lng: 106.7654318,
-  title: 'Sigma ID',
+  lat: -7.556167451104505,
+  lng: 110.85816741694953,
+  title: 'Laporan',
   infoWindow: {
-    content: '<h6>Sigma ID</h6><p>Jl.Setapak No.5, Citayam, Tajur Halang, Bogor, Jawa Barat 16320</p><p><a target="_blank" href="http://sigmaid.net/">Website</a></p>'
+    content: '<h6>Stadion Pasir</h6>Ini ngapa stadion pasir semua da<hr>Laporan Dari <b>Pak Andi</b><br><small>1 Hari yang lalu</small>'
   }
 });

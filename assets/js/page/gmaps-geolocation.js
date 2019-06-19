@@ -3,8 +3,8 @@
 // initialize map
 var map = new GMaps({
   div: '#map',
-  lat: -6.5637928,
-  lng: 106.7535061
+  lat: -7.5576139,
+  lng: 110.8557427,
 });
 // initialize map geolocation
 GMaps.geolocate({

@@ -33,4 +33,12 @@ class Page extends CI_Controller{
       }
   }
 
+  function laporkan_kejahatan(){
+    if($this->session->userdata('tipe')==='1'){
+      $this->load->view('laporkan_kejahatan');
+    } else {
+      echo 'Access Denied';
+    }
+  }
+
 }

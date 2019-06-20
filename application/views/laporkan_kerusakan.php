@@ -126,7 +126,6 @@
                       </div>
                       <div class="form-group">
                         <label>Keterangan Fasilitas (Jika Ada, misal nama warna dll)</label>
-                        <canvas style="position: fixed;margin: 0 auto; top:0px;" id="canvascam"></canvas>
                         <div class="input-group">
                           <input type="text" name="keteranganFasilitas" class="form-control" placeholder="Keterangan tentang Fasilitas Ini">
                         </div>

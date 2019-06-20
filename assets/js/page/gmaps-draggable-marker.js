@@ -4,14 +4,15 @@ var input_lat = $("#input-lat"), // latitude input text
   input_lng = $("#input-lng"), // longitude input text
   map = new GMaps({ // init map
     div: '#map',
-    lat: -6.5637928,
-    lng: 106.7535061
+    lat: -7.5576139,
+    lng: 110.8557427,
+    zoom: 16
   });
 
 // add marker
 var marker = map.addMarker({
-  lat: -6.5637928,
-  lng: 106.7535061,
+  lat: -7.5576139,
+  lng: 110.8557427,
   draggable: true,
 });
 

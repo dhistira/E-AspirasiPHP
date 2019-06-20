@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Dashboard - E-Aspirasi</title>
+  <title>Laporkan Kerusakan - E-Aspirasi</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap/css/bootstrap.min.css">
@@ -68,23 +68,63 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Dashboard</h1>
+            <h1>Laporkan Kerusakan Fasilitas / Jalan</h1>
           </div>
 
           <div class="section-body">
-            <h2 class="section-title">Laporan Terakhir</h2>
+            <h2 class="section-title">Laporkan Kerusakan Fasilitas / Jalan</h2>
             <p class="section-lead">
-              Berikut titik-titik laporan terakhir yang dilaporkan pada kami.
+              Isi formulir berikut untuk melaporkan kerusakan
             </p>
 
             <div class="row">
-              <div class="col-12">
+              <div class="col-6">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Peta Laporan Terakhir</h4>
+                    <h4>Tandai Lokasi Kerusakan</h4>
                   </div>
                   <div class="card-body">
+                    <div class="row mb-4">
+                      <div class="col-12 col-md-6 col-lg-4">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
+                          <input type="text" class="form-control" id="input-lng" placeholder="Longitude">
+                        </div>
+                      </div>
+                    </div>
                     <div id="map" data-height="400"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Isi Formulir Berikut</h4>
+                  </div>
+                  <div class="card-body">
+                    <form id="myForm">
+                      <div class="form-group">
+                        <label>Tipe Fasilitas</label>
+                        <select class="form-control">
+                          <option>Fasilitas Umum</option>
+                          <option>Jalan</option>
+                          <option>Lainnya</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>ID Fasilitas (Jika Ada) (<a href="#">Apa ini?</a>)</label>
+                        <canvas style="position: fixed;margin: 0 auto; top:0px;"></canvas>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text" onclick="activeQR()">
+                              QR Code Scan
+                            </div>
+                          </div>
+                          <input type="text" name="idfasilitas" id="idfasilitas" class="form-control" placeholder="#-#-#-#">
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -117,10 +157,24 @@
   <script src="<?= base_url(); ?>assets/modules/gmaps.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="<?= base_url(); ?>assets/js/page/gmaps-multiple-marker.js"></script>
+  <script src="<?= base_url(); ?>assets/js/page/gmaps-draggable-marker.js"></script>
   
   <!-- Template JS File -->
   <script src="<?= base_url(); ?>assets/js/scripts.js"></script>
   <script src="<?= base_url(); ?>assets/js/custom.js"></script>
+  <script type="text/javascript" src="<?= base_url(); ?>webCodeCam/js/qrcodelib.js"></script>
+  <script type="text/javascript" src="<?= base_url(); ?>webCodeCam/js/webcodecamjs.js"></script>
+  <script type="text/javascript">
+  function activeQR(){
+    var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
+    var x = document.getElementById('idfasilitas');
+    var arg = {
+      resultFunction: function(result) {
+        x.setAttribute("value",result.code);
+      }
+    };
+    new WebCodeCamJS("canvas").init(arg).play();
+  }
+  </script>
 </body>
 </html>

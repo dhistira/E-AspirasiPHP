@@ -17,4 +17,14 @@ class Page extends CI_Controller{
 
   }
 
+  function laporkan_kerusakan(){
+    //Allowing akses to admin only
+      if($this->session->userdata('tipe')==='1'){
+          $this->load->view('laporkan_kerusakan');
+      }else{
+          echo "Access Denied";
+      }
+
+  }
+
 }

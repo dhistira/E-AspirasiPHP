@@ -53,3 +53,4 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['page/laporkan-kerusakan'] = 'page/laporkan_kerusakan';
+$route['page/nilai-pelayanan'] = 'page/nilai_pelayanan';

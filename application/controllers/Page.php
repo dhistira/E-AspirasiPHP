@@ -8,7 +8,6 @@ class Page extends CI_Controller{
   }
 
   function index(){
-    //Allowing akses to admin only
       if($this->session->userdata('tipe')==='1'){
           $this->load->view('dashboard_view');
       }else{
@@ -18,13 +17,20 @@ class Page extends CI_Controller{
   }
 
   function laporkan_kerusakan(){
-    //Allowing akses to admin only
       if($this->session->userdata('tipe')==='1'){
           $this->load->view('laporkan_kerusakan');
       }else{
           echo "Access Denied";
       }
 
+  }
+
+  function nilai_pelayanan(){
+      if($this->session->userdata('tipe')==='1'){
+          $this->load->view('nilai_pelayanan');
+      }else{
+          echo "Access Denied";
+      }
   }
 
 }

@@ -3,26 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Laporkan Kerusakan - E-Aspirasi</title>
+  <title>Beri Nilai Pelayanan - E-Aspirasi</title>
 
-  <!-- General CSS Files -->
+   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/fontawesome/css/all.min.css">
 
   <!-- CSS Libraries -->
+   <!-- CSS Libraries -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/jquery-selectric/selectric.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/codemirror/theme/duotone-dark.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/modules/jquery-selectric/selectric.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/components.css">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/components.css">
 <!-- /END GA --></head>
 
 <body>
@@ -69,52 +72,25 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Laporkan Kerusakan Fasilitas / Jalan</h1>
+            <h1>Beri Nilai Pelayanan</h1>
           </div>
 
           <div class="section-body">
-            <h2 class="section-title">Laporkan Kerusakan Fasilitas / Jalan</h2>
+            <h2 class="section-title">Beri Nilai Pelayanan</h2>
             <p class="section-lead">
-              Isi formulir berikut untuk melaporkan kerusakan
+              Isi formulir untuk mengapresiasi atau mengomentari pelayanan
             </p>
 
             <div class="row">
-              <div class="col-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Tandai Lokasi Kerusakan</h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="row mb-4">
-                      <div class="col-md-10">
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
-                          <input type="text" class="form-control" id="input-lng" placeholder="Longitude">
-                        </div>
-                      </div>
-                    </div>
-                    <div id="map" data-height="400"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-6">
+              <div class="col-12">
                 <div class="card">
                   <div class="card-header">
                     <h4>Isi Formulir Berikut</h4>
                   </div>
                   <div class="card-body">
-                    <form id="myForm">
+                    <form id="myForm" style="width:60%;margin:0 auto;">
                       <div class="form-group">
-                        <label>Tipe Fasilitas</label>
-                        <select class="form-control">
-                          <option>Fasilitas Umum</option>
-                          <option>Jalan</option>
-                          <option>Lainnya</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>ID Fasilitas (Jika Ada) (<a href="#">Apa ini?</a>)</label>
+                        <label>ID Staff (<a href="#">Apa ini?</a>)</label>
                         <canvas style="position: fixed;margin: 0 auto; top:0px;" id="canvascam"></canvas>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -122,40 +98,29 @@
                               QR Code Scan
                             </div>
                           </div>
-                          <input type="text" name="idfasilitas" id="idfasilitas" class="form-control" placeholder="#-#-#-#">
+                          <input type="text" name="idstaff" id="idstaff" class="form-control" placeholder="#-#-#-#">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label>Keterangan Fasilitas (Jika Ada, misal nama warna dll)</label>
+                        <label>Tanggal & Waktu Pelayanan</label>
+                        <input type="text" class="form-control datetimepicker">
+                      </div>
+                      <div class="form-group">
+                        <label>Nilai</label>
+                        <select class="form-control">
+                          <option>5 - Sangat Sempurna</option>
+                          <option>4 - Cukup Sempurna</option>
+                          <option>3 - Oke</option>
+                          <option>2 - Kurang Baik</option>
+                          <option>1 - Mengecewakan</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Komentar / Pesan / Ucapan Terimakasih</label>
                         <div class="input-group">
-                          <input type="text" name="keteranganFasilitas" class="form-control" placeholder="Keterangan tentang Fasilitas Ini">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Status Fasilitas</label>
-                        <div class="selectgroup w-100">
-                          <label class="selectgroup-item">
-                            <input type="radio" name="value" value="50" class="selectgroup-input" checked="">
-                            <span class="selectgroup-button">Baik</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input type="radio" name="value" value="100" class="selectgroup-input">
-                            <span class="selectgroup-button">Perlu Perbaikan</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input type="radio" name="value" value="150" class="selectgroup-input">
-                            <span class="selectgroup-button">Rusak</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input type="radio" name="value" value="200" class="selectgroup-input">
-                            <span class="selectgroup-button">Tidak Dapat Digunakan</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Upload Foto Pendukung</label>
-                        <div class="input-group">
-                          <input type="file" class="btn btn-info">
+                          <div class="col-md-12">
+                            <textarea class="summernote-simple"></textarea>
+                          </div>
                         </div>
                       </div>
                       <div class="form-group">
@@ -190,15 +155,18 @@
   <script src="<?= base_url(); ?>assets/js/stisla.js"></script>
   
   <!-- JS Libraies -->
-  <script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
-  <script src="<?= base_url(); ?>assets/modules/gmaps.js"></script>
+  <script src="<?= base_url(); ?>assets/modules/summernote/summernote-bs4.js"></script>
+  <script src="<?= base_url(); ?>assets/modules/codemirror/lib/codemirror.js"></script>
+  <script src="<?= base_url(); ?>assets/modules/codemirror/mode/javascript/javascript.js"></script>
+  <script src="<?= base_url(); ?>assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
+  <script src="<?= base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="<?= base_url(); ?>assets/js/page/gmaps-draggable-marker.js"></script>
   
   <!-- Template JS File -->
   <script src="<?= base_url(); ?>assets/js/scripts.js"></script>
   <script src="<?= base_url(); ?>assets/js/custom.js"></script>
+
   <script type="text/javascript" src="<?= base_url(); ?>webCodeCam/js/qrcodelib.js"></script>
   <script type="text/javascript" src="<?= base_url(); ?>webCodeCam/js/webcodecamjs.js"></script>
   <script type="text/javascript">

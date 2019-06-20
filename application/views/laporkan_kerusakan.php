@@ -85,7 +85,7 @@
                   </div>
                   <div class="card-body">
                     <div class="row mb-4">
-                      <div class="col-12 col-md-6 col-lg-4">
+                      <div class="col-md-10">
                         <div class="input-group">
                           <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
                           <input type="text" class="form-control" id="input-lng" placeholder="Longitude">

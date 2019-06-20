@@ -114,7 +114,7 @@
                       </div>
                       <div class="form-group">
                         <label>ID Fasilitas (Jika Ada) (<a href="#">Apa ini?</a>)</label>
-                        <canvas style="position: fixed;margin: 0 auto; top:0px;"></canvas>
+                        <canvas style="position: fixed;margin: 0 auto; top:0px;" id="canvascam"></canvas>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text" onclick="activeQR()">
@@ -123,6 +123,43 @@
                           </div>
                           <input type="text" name="idfasilitas" id="idfasilitas" class="form-control" placeholder="#-#-#-#">
                         </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Keterangan Fasilitas (Jika Ada, misal nama warna dll)</label>
+                        <canvas style="position: fixed;margin: 0 auto; top:0px;" id="canvascam"></canvas>
+                        <div class="input-group">
+                          <input type="text" name="keteranganFasilitas" class="form-control" placeholder="Keterangan tentang Fasilitas Ini">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Status Fasilitas</label>
+                        <div class="selectgroup w-100">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="value" value="50" class="selectgroup-input" checked="">
+                            <span class="selectgroup-button">Baik</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="value" value="100" class="selectgroup-input">
+                            <span class="selectgroup-button">Perlu Perbaikan</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="value" value="150" class="selectgroup-input">
+                            <span class="selectgroup-button">Rusak</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="value" value="200" class="selectgroup-input">
+                            <span class="selectgroup-button">Tidak Dapat Digunakan</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Upload Foto Pendukung</label>
+                        <div class="input-group">
+                          <input type="file" class="btn btn-info">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-warning">Submit</button>
                       </div>
                     </form>
                   </div>

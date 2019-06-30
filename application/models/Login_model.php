@@ -12,4 +12,9 @@ class Login_model extends CI_Model{
   	$a = $this->db->query("SELECT lat,lon,date_reported,user.username username,keterangan from laporan_kerusakan INNER JOIN user ON laporan_kerusakan.id_user = user.id ORDER BY laporan_kerusakan.id ASC");
   	return $a->result();
   }
+
+  function getKejahatan(){
+  	$a = $this->db->query("SELECT lat,lon,datetime_kejadian,user.username username,jenis_kejahatan from laporan_keamanan INNER JOIN user ON laporan_keamanan.id_user = user.id ORDER BY laporan_keamanan.id ASC");
+  	return $a->result();
+  }
 }

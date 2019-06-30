@@ -133,6 +133,17 @@
     });';
     } ?>
 
+    <?php foreach($c as $d){
+    echo 'map.addMarker({
+      lat: '.$d->lat.',
+      lng: '.$d->lon.',
+      title: "Kejahatan",
+      infoWindow: {
+        content: "<h6>Laporan Kejahatan</h6>'.$d->jenis_kejahatan.'<hr>Laporan Dari <b>'.$d->username.'</b><br><small>Pada '.$d->datetime_kejadian.'</small>"
+      }
+    });';
+    } ?>
+
   </script>
   
   <!-- Template JS File -->

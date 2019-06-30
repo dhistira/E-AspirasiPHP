@@ -11,6 +11,7 @@ class Page extends CI_Controller{
   function index(){
       if($this->session->userdata('tipe')==='1'){
           $data['a'] = $this->Login_model->getKerusakan();
+          $data['c'] = $this->Login_model->getKejahatan();
           $this->load->view('dashboard_view',$data);
       }else{
           echo "Access Denied";
@@ -114,7 +115,7 @@ class Page extends CI_Controller{
 
   function laporkan_kejahatan(){
     if($this->session->userdata('tipe')==='1'){
-      $this->load->view('laporkan_kejahatan');
+      $this->load->view('laporkan_kejahatan',$data);
     } else {
       echo 'Access Denied';
     }

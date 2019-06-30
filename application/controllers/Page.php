@@ -14,7 +14,9 @@ class Page extends CI_Controller{
           $data['c'] = $this->Login_model->getKejahatan();
           $this->load->view('dashboard_view',$data);
       }else{
-          echo "Access Denied";
+          $data['a'] = $this->Login_model->getKerusakan();
+          $data['c'] = $this->Login_model->getKejahatan();
+          $this->load->view('dashboard_admin',$data);
       }
 
   }
@@ -115,7 +117,7 @@ class Page extends CI_Controller{
 
   function laporkan_kejahatan(){
     if($this->session->userdata('tipe')==='1'){
-      $this->load->view('laporkan_kejahatan',$data);
+      $this->load->view('laporkan_kejahatan');
     } else {
       echo 'Access Denied';
     }
@@ -145,6 +147,136 @@ class Page extends CI_Controller{
       } else {
         echo "Access Denied";
       }
+  }
+
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////           MANAJEMEN KERUSAKAN            ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+
+  function manajemen_kerusakan(){
+    if($this->session->userdata('tipe')==='2'){
+      $data['a'] = $this->Login_model->getKerusakan();
+      $this->load->view('manajemen_kerusakan',$data);
+    } else {
+      echo 'Access Denied';
+    }
+  }
+
+  function edit_status_kerusakan(){
+    $iditem = $this->uri->segment('3');
+    $statusLaporan = $this->uri->segment('4');
+    $statusLaporan = $statusLaporan + 1;
+    $this->db->where('id',$iditem);
+    $a = $this->db->update('laporan_kerusakan',
+      array(
+        'id_statusLaporan' => $statusLaporan
+          ));
+
+        if($a){
+          redirect(base_url().'page/manajemen_kerusakan?s=true');
+        } else {
+          redirect(base_url().'page/manajemen_kerusakan?s=false');
+        }
+  }
+
+  function delete_kerusakan(){
+      $iditem = $this->uri->segment('3');
+
+        if($this->session->userdata('tipe')==='2'){
+          $this->db->where('id',$iditem);
+          if($this->db->delete('laporan_kerusakan')){
+            redirect(base_url().'page/manajemen_kerusakan?s=true');
+          } else {
+            redirect(base_url().'page/manajemen_kerusakan?s=false');
+          }
+        }else{
+            echo "Access Denied";
+        }
+
+  }
+
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////           MANAJEMEN PELAYANAN            ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+
+  function manajemen_pelayanan(){
+    if($this->session->userdata('tipe')==='2'){
+      $data['a'] = $this->Login_model->getPelayanan();
+      $this->load->view('manajemen_pelayanan',$data);
+    } else {
+      echo 'Access Denied';
+    }
+  }
+
+  function delete_pelayanan(){
+      $iditem = $this->uri->segment('3');
+
+        if($this->session->userdata('tipe')==='2'){
+          $this->db->where('id',$iditem);
+          if($this->db->delete('laporan_pelayanan')){
+            redirect(base_url().'page/manajemen_pelayanan?s=true');
+          } else {
+            redirect(base_url().'page/manajemen_pelayanan?s=false');
+          }
+        }else{
+            echo "Access Denied";
+        }
+
+  }
+
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////           MANAJEMEN KEAMANAN             ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+
+  function manajemen_keamanan(){
+    if($this->session->userdata('tipe')==='2'){
+      $data['a'] = $this->Login_model->getKejahatan();
+      $this->load->view('manajemen_keamanan',$data);
+    } else {
+      echo 'Access Denied';
+    }
+  }
+
+  function edit_status_keamanan(){
+    $iditem = $this->uri->segment('3');
+    $statusLaporan = $this->uri->segment('4');
+    $statusLaporan = $statusLaporan + 1;
+    $this->db->where('id',$iditem);
+    $a = $this->db->update('laporan_keamanan',
+      array(
+        'id_statusKeamanan' => $statusLaporan
+          ));
+
+        if($a){
+          redirect(base_url().'page/manajemen_keamanan?s=true');
+        } else {
+          redirect(base_url().'page/manajemen_keamanan?s=false');
+        }
+  }
+
+  function delete_keamanan(){
+      $iditem = $this->uri->segment('3');
+
+        if($this->session->userdata('tipe')==='2'){
+          $this->db->where('id',$iditem);
+          if($this->db->delete('laporan_keamanan')){
+            redirect(base_url().'page/manajemen_keamanan?s=true');
+          } else {
+            redirect(base_url().'page/manajemen_keamanan?s=false');
+          }
+        }else{
+            echo "Access Denied";
+        }
+
   }
 
   //////////////////////////////////////////////////

@@ -33,7 +33,7 @@ class Login extends CI_Controller{
 
         // access login for staff
         }elseif($tipe === '2'){
-            redirect('page/staff');
+            redirect('page');
 
         // access login for others
         }else{

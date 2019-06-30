@@ -65,7 +65,7 @@
 
             <div class="row">
               <div class="col-12">
-                
+
               <?php if(isset($_GET['t'])){
                 if($_GET['t'] == 'true'){
                   echo '<div class="alert alert-success">Berhasil! Data berhasil ditambah!</div>';
@@ -111,7 +111,29 @@
   <script src="<?= base_url(); ?>assets/modules/gmaps.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="<?= base_url(); ?>assets/js/page/gmaps-multiple-marker.js"></script>
+  <script>
+    "use strict";
+
+    // initialize map
+    var map = new GMaps({
+      div: '#map',
+      lat: -7.5576139,
+      lng: 110.8557427,
+      zoom: 16
+    });
+    // Added markers to the map
+    <?php foreach($a as $b){
+    echo 'map.addMarker({
+      lat: '.$b->lat.',
+      lng: '.$b->lon.',
+      title: "Laporan",
+      infoWindow: {
+        content: "<h6>Laporan Kerusakan</h6>'.$b->keterangan.'<hr>Laporan Dari <b>'.$b->username.'</b><br><small>Pada '.$b->date_reported.'</small>"
+      }
+    });';
+    } ?>
+
+  </script>
   
   <!-- Template JS File -->
   <script src="<?= base_url(); ?>assets/js/scripts.js"></script>

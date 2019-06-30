@@ -54,6 +54,7 @@
 
       <!-- Main Content -->
       <div class="main-content">
+        <form id="myForm" method="post" action="<?= base_url().'page/action_laporkan_kejahatan';?>" enctype='multipart/form-data'>
         <section class="section">
           <div class="section-header">
             <h1>Laporkan Kejahatan</h1>
@@ -82,8 +83,8 @@
                     <div class="row mb-4">
                       <div class="col-md-10">
                         <div class="input-group">
-                          <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
-                          <input type="text" class="form-control" id="input-lng" placeholder="Longitude">
+                          <input type="text" class="form-control" id="input-lat" placeholder="Latitude" name="lat">
+                          <input type="text" class="form-control" id="input-lng" placeholder="Longitude" name="lon">
                         </div>
                       </div>
                     </div>
@@ -101,23 +102,23 @@
                     <form id="myForm">
                       <div class="form-group">
                         <label>Tanggal & Waktu Kejadian</label>
-                        <input type="text" class="form-control datetimepicker">
+                        <input type="text" class="form-control datetimepicker" name="datetimekejadian">
                       </div>
                       <div class="form-group">
                         <label>Jenis Kejahatan</label>
-                        <select class="form-control">
-                          <option>Pencurian</option>
-                          <option>Perampokan</option>
-                          <option>Pembunuhan</option>
-                          <option>Mengganggu Ketertiban</option>
-                          <option>Hipnotis</option>
-                          <option>Dll</option>
+                        <select class="form-control" name="jeniskejahatan">
+                          <option name="jeniskejahatan" value="pencurian">Pencurian</option>
+                          <option name="jeniskejahatan" value="perampokan">Perampokan</option>
+                          <option name="jeniskejahatan" value="pembunuhan">Pembunuhan</option>
+                          <optio name="jeniskejahatan" value="menganggu ketertiban">Mengganggu Ketertiban</option>
+                          <option name="jeniskejahatan" value="hipnotis">Hipnotis</option>
+                          <option name="jeniskejahatan" value="Dll">Dll</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label class="form-label">Upload Foto Pendukung</label>
                         <div class="input-group">
-                          <input type="file" class="btn btn-info">
+                          <input type="file" name="image" class="btn btn-info">
                         </div>
                       </div>
                       <div class="form-group">
@@ -130,6 +131,7 @@
             </div>
           </div>
         </section>
+      </form>
       </div>
       <footer class="main-footer">
         <div class="footer-left">

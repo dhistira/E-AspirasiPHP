@@ -5,11 +5,13 @@ class Page extends CI_Controller{
     if($this->session->userdata('logged_in') !== TRUE){
       redirect('login');
     }
+    $this->load->model('Login_model');
   }
 
   function index(){
       if($this->session->userdata('tipe')==='1'){
-          $this->load->view('dashboard_view');
+          $data['a'] = $this->Login_model->getKerusakan();
+          $this->load->view('dashboard_view',$data);
       }else{
           echo "Access Denied";
       }
@@ -116,6 +118,32 @@ class Page extends CI_Controller{
     } else {
       echo 'Access Denied';
     }
+  }
+
+  function action_laporkan_kejahatan(){
+      if($this->session->userdata('tipe') === '1'){
+          $iduser = $this->session->userdata('id');
+          $foto = $this->uploadImage();
+          $a = $this->db->insert('laporan_keamanan',
+            array(
+              'id_user' => $iduser,
+              'datetime_kejadian' => $this->input->post('datetimekejadian'),
+              'jenis_kejahatan' => $this->input->post('jeniskejahatan'),
+              'date_created' => date("Y-m-d h:i:s"),
+              'lat' => $this->input->post('lat'),
+              'lon' => $this->input->post('lon'),
+              'foto' => $foto,
+              'id_statusKeamanan' => '1'
+            ));
+
+          if($a){
+            redirect(base_url().'page/index?t=true');
+          } else {
+            redirect(base_url().'page/index?t=false');
+          }
+      } else {
+        echo "Access Denied";
+      }
   }
 
   //////////////////////////////////////////////////

@@ -46,24 +46,8 @@
       </nav>
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
-            <a href="index.html">E-Aspirasi</a>
-          </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-          </div>
-          <ul class="sidebar-menu">
-            <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="<?= base_url('page');?>"><i class="far fa-bell"></i> <span>Dashboard</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/laporkan-kerusakan');?>"><i class="far fa-bell"></i> <span>Laporkan Kerusakan</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/nilai-pelayanan');?>"><i class="far fa-bell"></i> <span>Beli Nilai Pelayanan</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/laporkan-kejahatan');?>"><i class="far fa-bell"></i> <span>Laporkan Kejahatan</span></a></li>
-          </ul>
-
-          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
-              <i class="fas fa-envelope"></i> Contact Us
-            </a>
-          </div>        </aside>
+          <?php $this->load->view('sidebar'); ?>        
+        </aside>
       </div>
 
       <!-- Main Content -->
@@ -80,7 +64,15 @@
             </p>
 
             <div class="row">
+              <?php if(isset($_GET['t'])){
+                if($_GET['t'] == 'true'){
+                  echo '<div class="alert alert-success">Berhasil! Data berhasil ditambah!</div>';
+                } else {
+                  echo '<div class="alert alert-danger">Oops! Terjadi masalah!</div>';
+                }
+              }?>
               <div class="col-6">
+              <form id="myForm" method="post" action="<?= base_url().'page/action_laporkan_kerusakan';?>" enctype='multipart/form-data'>
                 <div class="card">
                   <div class="card-header">
                     <h4>Tandai Lokasi Kerusakan</h4>
@@ -89,8 +81,8 @@
                     <div class="row mb-4">
                       <div class="col-md-10">
                         <div class="input-group">
-                          <input type="text" class="form-control" id="input-lat" placeholder="Latitude">
-                          <input type="text" class="form-control" id="input-lng" placeholder="Longitude">
+                          <input type="text" class="form-control" id="input-lat" placeholder="Latitude" name="lat">
+                          <input type="text" class="form-control" id="input-lng" placeholder="Longitude" name="lon">
                         </div>
                       </div>
                     </div>
@@ -105,13 +97,12 @@
                     <h4>Isi Formulir Berikut</h4>
                   </div>
                   <div class="card-body">
-                    <form id="myForm">
                       <div class="form-group">
                         <label>Tipe Fasilitas</label>
-                        <select class="form-control">
-                          <option>Fasilitas Umum</option>
-                          <option>Jalan</option>
-                          <option>Lainnya</option>
+                        <select class="form-control" name="tipefasilitas">
+                          <option name="tipefasilitas" value="1">Fasilitas Umum</option>
+                          <option name="tipefasilitas" value="2">Jalan</option>
+                          <option name="tipefasilitas" value="3">Lainnya</option>
                         </select>
                       </div>
                       <div class="form-group">
@@ -136,19 +127,23 @@
                         <label class="form-label">Status Fasilitas</label>
                         <div class="selectgroup w-100">
                           <label class="selectgroup-item">
-                            <input type="radio" name="value" value="50" class="selectgroup-input" checked="">
+                            <input type="radio" name="statusfasilitas" value="1" class="selectgroup-input" checked="">
                             <span class="selectgroup-button">Baik</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="value" value="100" class="selectgroup-input">
+                            <input type="radio" name="statusfasilitas" value="2" class="selectgroup-input">
                             <span class="selectgroup-button">Perlu Perbaikan</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="value" value="150" class="selectgroup-input">
+                            <input type="radio" name="statusfasilitas" value="3" class="selectgroup-input">
                             <span class="selectgroup-button">Rusak</span>
                           </label>
                           <label class="selectgroup-item">
-                            <input type="radio" name="value" value="200" class="selectgroup-input">
+                            <input type="radio" name="statusfasilitas" value="4" class="selectgroup-input">
+                            <span class="selectgroup-button">Rusak Parah</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="statusfasilitas" value="5" class="selectgroup-input">
                             <span class="selectgroup-button">Tidak Dapat Digunakan</span>
                           </label>
                         </div>
@@ -156,7 +151,7 @@
                       <div class="form-group">
                         <label class="form-label">Upload Foto Pendukung</label>
                         <div class="input-group">
-                          <input type="file" class="btn btn-info">
+                          <input type="file" name="image" class="btn btn-info">
                         </div>
                       </div>
                       <div class="form-group">

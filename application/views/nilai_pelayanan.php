@@ -49,24 +49,8 @@
       </nav>
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
-            <a href="index.html">E-Aspirasi</a>
-          </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-          </div>
-          <ul class="sidebar-menu">
-            <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="<?= base_url('page');?>"><i class="far fa-bell"></i> <span>Dashboard</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/laporkan-kerusakan');?>"><i class="far fa-bell"></i> <span>Laporkan Kerusakan</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/nilai-pelayanan');?>"><i class="far fa-bell"></i> <span>Beli Nilai Pelayanan</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/laporkan-kejahatan');?>"><i class="far fa-bell"></i> <span>Laporkan Kejahatan</span></a></li>
-          </ul>
-
-          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
-              <i class="fas fa-envelope"></i> Contact Us
-            </a>
-          </div>        </aside>
+        <?php $this->load->view('sidebar');?>
+        </aside>
       </div>
 
       <!-- Main Content -->
@@ -84,12 +68,20 @@
 
             <div class="row">
               <div class="col-12">
+                <?php if(isset($_GET['t'])){
+                  if($_GET['t'] == 'true'){
+                    echo '<div class="alert alert-success">Berhasil! Data berhasil ditambah!</div>';
+                  } else {
+                    echo '<div class="alert alert-danger">Oops! Terjadi masalah!</div>';
+                  }
+                }?>
+                <form id="myForm" method="post" action="<?= base_url().'page/action_laporkan_pelayanan'; ?>">
                 <div class="card">
                   <div class="card-header">
                     <h4>Isi Formulir Berikut</h4>
                   </div>
                   <div class="card-body">
-                    <form id="myForm" style="width:60%;margin:0 auto;">
+                    <form id="myForm" method="post" action="<?= base_url().'page/action_laporkan_pelayanan' ;?>" style="width:60%;margin:0 auto;">
                       <div class="form-group">
                         <label>ID Staff (<a href="#">Apa ini?</a>)</label>
                         <canvas style="position: fixed;margin: 0 auto; top:0px;" id="canvascam"></canvas>
@@ -104,23 +96,23 @@
                       </div>
                       <div class="form-group">
                         <label>Tanggal & Waktu Pelayanan</label>
-                        <input type="text" class="form-control datetimepicker">
+                        <input type="text" class="form-control datetimepicker" name="datetimepelayanan">
                       </div>
                       <div class="form-group">
                         <label>Nilai</label>
-                        <select class="form-control">
-                          <option>5 - Sangat Sempurna</option>
-                          <option>4 - Cukup Sempurna</option>
-                          <option>3 - Oke</option>
-                          <option>2 - Kurang Baik</option>
-                          <option>1 - Mengecewakan</option>
+                        <select class="form-control" name="nilai">
+                          <option name="nilai" value="1">5 - Sangat Sempurna</option>
+                          <option name="nilai" value="2">4 - Baik</option>
+                          <option name="nilai" value="3">3 - Cukup Sempurna</option>
+                          <option name="nilai" value="4">2 - Cukup Sempurna</option>4 Kurang</option>
+                          <option name="nilai" value="5">1 Sangat Kurang</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label>Komentar / Pesan / Ucapan Terimakasih</label>
                         <div class="input-group">
                           <div class="col-md-12">
-                            <textarea class="summernote-simple"></textarea>
+                            <textarea class="summernote-simple" name="keterangan"></textarea>
                           </div>
                         </div>
                       </div>
@@ -130,6 +122,7 @@
                     </form>
                   </div>
                 </div>
+              </form>
               </div>
             </div>
           </div>

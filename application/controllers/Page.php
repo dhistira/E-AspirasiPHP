@@ -16,6 +16,13 @@ class Page extends CI_Controller{
 
   }
 
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////          LAPORKAN KERUSAKAN              ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+
   function laporkan_kerusakan(){
       if($this->session->userdata('tipe')==='1'){
           $this->load->view('laporkan_kerusakan');
@@ -25,6 +32,45 @@ class Page extends CI_Controller{
 
   }
 
+  function action_laporkan_kerusakan(){
+      if($this->session->userdata('tipe') === '1'){
+          $iduser = $this->session->userdata('id');
+          $lat = $this->input->post('lat');
+          $lon = $this->input->post('lon');
+          $foto = $this->uploadImage();
+          $a = $this->db->insert('laporan_kerusakan',
+            array(
+              'id_user' => $iduser,
+              'tipe' => $this->input->post('tipefasilitas'),
+              'id_fasilitas' => $this->input->post('idfasilitas'),
+              'id_statusInfrastruktur' => $this->input->post('statusfasilitas'),
+              'date_reported' => date("Y-m-d h:i:s"),
+              'date_modified' => date("Y-m-d h:i:s"),
+              'id_statusLaporan' => 1,
+              'foto' => null,
+              'lat' => $lat,
+              'lon' => $lon,
+              'foto' => $foto,
+              'keterangan' => $this->input->post('keteranganFasilitas')
+            ));
+
+          if($a){
+            redirect(base_url().'page/index?t=true');
+          } else {
+            redirect(base_url().'page/index?t=false');
+          }
+      } else {
+        echo "Access Denied";
+      }
+  }
+
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////             NILAI PELAYANAN              ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+  
   function nilai_pelayanan(){
       if($this->session->userdata('tipe')==='1'){
           $this->load->view('nilai_pelayanan');
@@ -33,12 +79,68 @@ class Page extends CI_Controller{
       }
   }
 
+  function action_laporkan_pelayanan(){
+      if($this->session->userdata('tipe') === '1'){
+          $iduser = $this->session->userdata('id');
+          $a = $this->db->insert('laporan_pelayanan',
+            array(
+              'id_user' => $iduser,
+              'id_staffPelayanan' => $this->input->post('idstaff'),
+              'datetime_pelayanan' => $this->input->post('datetimepelayanan'),
+              'nilai' => $this->input->post('nilai'),
+              'keterangan' => $this->input->post('keterangan'),
+              'date_created' => date("Y-m-d h:i:s"),
+              'date_modified' => date("Y-m-d h:i:s"),
+              'id_statusPelayanan' => '1'
+            ));
+
+          if($a){
+            redirect(base_url().'page/index?t=true');
+          } else {
+            redirect(base_url().'page/index?t=false');
+          }
+      } else {
+        echo "Access Denied";
+      }
+  }
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////          LAPORKAN KEJAHATAN              ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+
   function laporkan_kejahatan(){
     if($this->session->userdata('tipe')==='1'){
       $this->load->view('laporkan_kejahatan');
     } else {
       echo 'Access Denied';
     }
+  }
+
+  //////////////////////////////////////////////////
+  ////                                          ////
+  ////                UTILITIES                 ////
+  ////                                          ////
+  //////////////////////////////////////////////////
+
+  private function uploadImage()
+  {
+      $config['upload_path']          = FCPATH . '/tubespemwebok/uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['file_name']            = date("Ymdhis");
+      $config['overwrite']      = true;
+      $config['max_size']             = 1024; // 1MB
+      // $config['max_width']            = 1024;
+      // $config['max_height']           = 768;
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('image')) {
+          return $this->upload->data("file_name");
+      } else {
+        return "default.jpg";
+      }
   }
 
 }

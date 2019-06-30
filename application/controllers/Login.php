@@ -18,7 +18,9 @@ class Login extends CI_Controller{
         $name  = $data['username'];
         $username = $data['username'];
         $tipe = $data['tipe'];
+        $id = $data['id'];
         $sesdata = array(
+            'id' => $id,
             'fullname'  => $name,
             'username'     => $username,
             'tipe'     => $tipe,

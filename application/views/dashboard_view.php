@@ -46,24 +46,8 @@
       </nav>
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
-            <a href="index.html">E-Aspirasi</a>
-          </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-          </div>
-          <ul class="sidebar-menu">
-            <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="<?= base_url('page');?>"><i class="far fa-bell"></i> <span>Dashboard</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/laporkan-kerusakan');?>"><i class="far fa-bell"></i> <span>Laporkan Kerusakan</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/nilai-pelayanan');?>"><i class="far fa-bell"></i> <span>Beli Nilai Pelayanan</span></a></li>
-            <li><a class="nav-link" href="<?= base_url('page/laporkan-kejahatan');?>"><i class="far fa-bell"></i> <span>Laporkan Kejahatan</span></a></li>
-          </ul>
-
-          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
-              <i class="fas fa-envelope"></i> Contact Us
-            </a>
-          </div>        </aside>
+          <?php $this->load->view('sidebar');?>  
+        </aside>
       </div>
 
       <!-- Main Content -->
@@ -81,6 +65,14 @@
 
             <div class="row">
               <div class="col-12">
+                
+              <?php if(isset($_GET['t'])){
+                if($_GET['t'] == 'true'){
+                  echo '<div class="alert alert-success">Berhasil! Data berhasil ditambah!</div>';
+                } else {
+                  echo '<div class="alert alert-danger">Oops! Terjadi masalah!</div>';
+                }
+              }?>
                 <div class="card">
                   <div class="card-header">
                     <h4>Peta Laporan Terakhir</h4>

@@ -26,7 +26,9 @@ map.addListener("click", function(e) {
     lat: lat,
     lng: lng
   });
-  update_position();       
+  update_position();
+  localStorage.lat = lat;
+  localStorage.lng = lng;       
 });
 
 // when the marker is dragged
@@ -40,6 +42,8 @@ function update_position() {
   var lat = marker.getPosition().lat(), lng = marker.getPosition().lng();
   input_lat.val(lat);
   input_lng.val(lng);
+  localStorage.lat = lat;
+  localStorage.lng = lng;
 }
 
 // move the marker when the latitude and longitude inputs change in value
